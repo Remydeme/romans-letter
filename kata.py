@@ -41,7 +41,6 @@ class Player:
         self._previous_score = 0
         self.score_dico = {0: "-", 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "X"}
 
-
     def play(self):
         self._previous_score = 0
         score = ""
@@ -91,19 +90,20 @@ class Game:
         player_one_score = Score(list_of_scores=self.scores_one)
         player_two_score = Score(list_of_scores=self.scores_two)
         if player_one_score > player_two_score:
-            print(f"Player {self.player_one.name} won with {player_one_score} points")
+            # print(f"Player {self.player_one.name} won with {player_one_score} points")
+            return 1
         elif player_one_score < player_two_score:
-            print(f"Player {self.player_two.name} won with {player_two_score} points")
+            # print(f"Player {self.player_two.name} won with {player_two_score} points")
+            return 2
         else:
             print(f" Equal game ")
-
+            return 0
 
     def pretty_printer(self):
         print("_____________ Player 1 _________________")
         print(self.scores_one)
         print("_____________ Player 2 _________________")
         print(self.scores_two)
-
 
 
 if __name__ == "__main__":

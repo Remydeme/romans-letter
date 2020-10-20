@@ -1,5 +1,7 @@
 import unittest
 from kata import Score
+from unittest.mock import Mock
+from kata import Game
 
 
 class test(unittest.TestCase):
@@ -105,6 +107,26 @@ class test(unittest.TestCase):
     def test_return_score_when_spare_and_two_three_8(self):
         res = ["X", "3/", "12"]
         self.assertEqual(34, Score(res))
+
+    def test_with_mock(self):
+        mocker1 = Mock()
+        mocker2 = Mock()
+        mocker1.play = play_mock1
+        mocker1.expect_value = 100
+        mocker2.play = play_mock2
+        mocker2.expected_value = 0
+        game = Game(mocker1, mocker2)
+        game.play()
+        game.pretty_printer()
+        # self.assertEqual(Score(game.scores_one), mocker1.expect_value)
+        self.assertEqual(mocker2.expected_value, Score(game.scores_two))
+
+
+def play_mock1():
+    return "X"
+
+def play_mock2():
+    return "--"
 
 
 if __name__ == '__main__':
